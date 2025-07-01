@@ -1,12 +1,4 @@
-import express from "express";
-
-const app = express();
-
-app.use(express.json());
-
-app.get("/", (_req, res) => {
-  res.send("Translation API is running!");
-});
+import app from "./app";
 
 const PORT = 8080;
 app.listen(PORT, () => {
