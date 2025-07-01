@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { translateText } from "../services/translate.service";
 import { generateExplanation } from "../services/explanation.service ";
 import { AppError } from "../utils/AppError";
+import { sendSuccess } from "../utils/sendSuccess";
 
 export const handleTranslation = async (req: Request, res: Response) => {
   const { text, to } = req.body;
@@ -13,9 +14,9 @@ export const handleTranslation = async (req: Request, res: Response) => {
     );
   }
 
-  const result = await translateText(to, text);
+  const translated = await translateText(to, text);
 
-  res.status(200).json({ translated: result });
+  return sendSuccess(res, { translated }, "Translation successful");
 };
 
 export const handleTranslateExplanation = async (
@@ -31,7 +32,7 @@ export const handleTranslateExplanation = async (
     );
   }
 
-  const result = await generateExplanation(from, text);
+  const explanation = await generateExplanation(from, text);
 
-  res.status(200).json({ explanation: result });
+  return sendSuccess(res, { explanation }, "explanation successful");
 };
