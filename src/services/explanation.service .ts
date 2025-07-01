@@ -1,4 +1,5 @@
 import openai from "../libs/openai";
+import { AppError } from "../utils/AppError";
 
 export const generateExplanation = async (
   fromLanguage: string,
@@ -21,7 +22,7 @@ export const generateExplanation = async (
   const explanation = response.choices[0].message.content?.replaceAll('"', "");
 
   if (!explanation) {
-    throw new Error("No explanation returned from OpenAI");
+    throw new AppError("No explanation returned from OpenAI", 502);
   }
 
   return explanation;
