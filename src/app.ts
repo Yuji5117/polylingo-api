@@ -1,11 +1,10 @@
 import express from "express";
+import translateRouter from "./routes/translate.router";
 
 const app = express();
 
 app.use(express.json());
 
-app.get("/", (_req, res) => {
-  res.send("Translation API is running!");
-});
+app.use("/api/translate", translateRouter);
 
 export default app;
