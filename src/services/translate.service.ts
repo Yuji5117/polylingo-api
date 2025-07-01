@@ -1,4 +1,5 @@
 import openai from "../libs/openai";
+import { AppError } from "../utils/AppError";
 
 export const translateText = async (language: string, text: string) => {
   const response = await openai.chat.completions.create({
@@ -20,6 +21,10 @@ export const translateText = async (language: string, text: string) => {
     '"',
     ""
   );
+
+  if(!translatedText) {
+    throw new AppError("No translated text returned from OpenAI", 502);
+  }
 
   return translatedText;
 };
