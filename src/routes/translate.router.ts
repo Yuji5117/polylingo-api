@@ -7,6 +7,6 @@ import {
 const router = Router();
 
 router.post("/", handleTranslation);
-router.post("/explanation", handleTranslateExplanation);
+router.post("/explain", handleTranslateExplanation);
 
 export default router;
