@@ -16,7 +16,7 @@ export const handleTranslation = async (req: Request, res: Response) => {
 
   const translated = await translateText(to, text);
 
-  return sendSuccess(res, { translated }, "Translation successful");
+  sendSuccess(res, { translated }, "Translation successful");
 };
 
 export const handleTranslateExplanation = async (
@@ -34,5 +34,5 @@ export const handleTranslateExplanation = async (
 
   const explanation = await generateExplanation(from, text);
 
-  return sendSuccess(res, { explanation }, "explanation successful");
+  sendSuccess(res, { explanation }, "explanation successful");
 };
