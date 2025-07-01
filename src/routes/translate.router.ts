@@ -1,8 +1,12 @@
 import { Router } from "express";
-import { handleTranslation } from "../controllers/translate.controller";
+import {
+  handleTranslateExplanation,
+  handleTranslation,
+} from "../controllers/translate.controller";
 
 const router = Router();
 
 router.post("/", handleTranslation);
+router.post("/explanation", handleTranslateExplanation);
 
 export default router;
