@@ -7,12 +7,12 @@ import { sendSuccess } from "../utils/sendSuccess";
 export const handleTranslation = async (req: Request, res: Response) => {
   const { text, to } = req.body;
 
-  if (!text || !to) {
-    throw new AppError(
-      "Missing required fields: 'text' and/or 'to' language",
-      400
-    );
-  }
+  // if (!text || !to) {
+  //   throw new AppError(
+  //     "Missing required fields: 'text' and/or 'to' language",
+  //     400
+  //   );
+  // }
 
   const translated = await translateText(to, text);
 
