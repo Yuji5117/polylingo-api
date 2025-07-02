@@ -4,11 +4,18 @@ import {
   handleTranslation,
 } from "../controllers/translate.controller";
 import { validate } from "../middleware/validate";
-import { translateSchema } from "../validations/translate.schema";
+import {
+  translateExplanationSchema,
+  translateSchema,
+} from "../validations/translate.schema";
 
 const router = Router();
 
 router.post("/", validate(translateSchema), handleTranslation);
-router.post("/explain", handleTranslateExplanation);
+router.post(
+  "/explain",
+  validate(translateExplanationSchema),
+  handleTranslateExplanation
+);
 
 export default router;
