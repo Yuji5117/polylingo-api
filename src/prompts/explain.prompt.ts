@@ -4,7 +4,6 @@ export const getExplainPrompt = (
   tags: string[]
 ): string => {
   const selected = tags.join(", ");
-  console.log(selected);
 
   return `
 You are a helpful language tutor assisting Japanese learners of English.
@@ -18,16 +17,26 @@ Please explain the English translation below in simple and natural Japanese, foc
 
 ---
 
-# 原文（日本語）:
+# Original sentence (Japanese):
 ${originalText}
 
-# 翻訳結果（英語）:
+# Translated sentence (English):
 ${translatedResult}
 
----
-
-# 解説（日本語で書いてください）
-
+# Selected explanation tags:
 ${selected}
+
+# Examle
+## 文法
+この文では「Where should we go...?」という疑問文の形を使っています。
+
+## ニュアンス
+この文は「夜にどのバーに行くべきか？」という意味です。
+
+## ボキャブラリー
+- Where：どこに
+- should：〜すべき
+- go：行く
+
 `;
 };
