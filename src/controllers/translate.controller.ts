@@ -16,16 +16,20 @@ export const handleTranslateExplanation = async (
   req: Request,
   res: Response
 ) => {
-  const { text, from } = req.body;
+  const { originalText, translatedResult, tags } = req.body;
 
-  if (!text || !from) {
+  if (!originalText || !translatedResult || !tags) {
     throw new AppError(
-      "Missing required fields: 'text' and/or 'from' language",
+      "Missing required fields: 'originalText', 'translatedResult' and/or 'tags'",
       400
     );
   }
 
-  const explanation = await generateExplanation(from, text);
+  const explanation = await generateExplanation(
+    originalText,
+    translatedResult,
+    tags
+  );
 
   sendSuccess(res, { explanation }, "explanation successful");
 };

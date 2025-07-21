@@ -1,20 +1,24 @@
 import openai from "../libs/openai";
+import { getExplainPrompt } from "../prompts";
 import { AppError } from "../utils/AppError";
 
 export const generateExplanation = async (
-  fromLanguage: string,
-  text: string
+  originalText: string,
+  translatedResult: string,
+  tags: string[]
 ) => {
+  const prompt = getExplainPrompt(originalText, translatedResult, tags);
+
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     messages: [
       {
         role: "system",
-        content: `You are a helpful assistant who explains translations in only ${fromLanguage}. Keep the explanation clear and natural.`,
+        content: `You are a helpful assistant for Japanese learners of English. Always respond in clear and natural Japanese.`,
       },
       {
         role: "user",
-        content: `Please explain the following sentence in ${fromLanguage}: \n\n"${text}""`,
+        content: prompt,
       },
     ],
   });

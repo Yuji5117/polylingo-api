@@ -6,8 +6,9 @@ export const translateSchema = z.object({
 });
 
 export const translateExplanationSchema = z.object({
-  text: z
-    .string()
-    .min(1, "Please translate something before requesting explanation."),
-  from: z.string().min(1, "Target language is required"),
+  originalText: z.string().min(1, "Original text is required."),
+  translatedResult: z.string().min(1, "Translated text is required."),
+  tags: z
+    .array(z.string())
+    .min(1, "Please select at least one explanation tag."),
 });
